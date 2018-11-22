@@ -7,12 +7,12 @@ let params = {
 
 /* ---- START REQUIRED PARAMS ---- */
 
-	/* querySelector for form DOM-element
+	/* querySelector for form DOM-element.
 	 * (or formDOMElement)
 	 */
 	formQuery: ".my-form",
 
-	/* raw form DOM-element
+	/* Raw form DOM-element.
 	 * (or formQuery)
 	 */
 	formDOMElement: document.querySelector(".my-form"),
@@ -23,29 +23,29 @@ let params = {
 /* ---- END REQUIRED PARAMS ---- */
 
 
-	/* request method */
+	/* Request method */
 	method: "POST",
 
-	/* request cors
-	 * default: 'same-origin'
+	/* Request cors.
+	 * Default: 'same-origin'
 	 * [ same-origin, no-cors, cors ]
 	 * */
 	mode: "cors",
 
-	/* cache mode
-	 * default: 'default'
+	/* Cache mode.
+	 * Default: 'default'
 	 * [ default, no-cache, reload, force-cache, only-if-cached ]
 	 */
 	cache: "default",
 
-	/* credentials
-	 * default: 'same-origin'
+	/* Credentials.
+	 * Default: 'same-origin'
 	 * [ same-origin, include, omit ]
 	 */
 	credentials: "same-origin",
 
-	/* validate form before request
-	 * return true if not valid
+	/* Validate form before request.
+	 * Return true if not valid.
 	 */
 	validateCallback: function(form) {
 
@@ -59,15 +59,15 @@ let params = {
 		return false;
 	},
 
-	/* async callback on success
-	 * Fetch API response provided as first argument
+	/* Async callback on success.
+	 * Fetch API response provided as first argument.
 	 */
 	successCallback: function(response) {
 		console.log("Success: " + response.text());
 	},
 
-	/* async callback on error
-	 * can be either Fetch API or File API error
+	/* Async callback on error.
+	 * Can be either Fetch API or File API error.
 	 */
 	errorCallback: function(what) {
 		console.log("Error: " + what);
@@ -76,6 +76,30 @@ let params = {
 
 handleForm(params);
 ```
+## Result
+```js
+/* It sends form data to server in json format.
+ * Each key of json is 'name' property from inputs.
+ * File transferred using base64 encoding.
+ * Multiple files transferred in array of base64 strings
+ * Example:
+ */
+{
+	"login":"Peter",
+	"pass":"superpassword",
+	"avatarImage": "I2luY2x1ZGUgPGlvc3RyZWFtPg0KI2luY"
+}
+/* for */
+```
+
+```html
+<form class="my-form">
+	<input name="login"       type="text" />
+	<input name="pass"        type="password" />
+	<input name="avatarImage" type="file" />
+</form>
+```
+
 ## License
 
 [MIT][mit-url]
