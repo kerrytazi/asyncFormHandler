@@ -132,25 +132,18 @@ handleForm = params => {
 
 		let fetchSettings = { "body": JSON.stringify(data) };
 
-		if (params.hasOwnProperty("method"))
-		{
-			fetchSettings.method = params.method;
-		}
+		let commonSettingsNames = [
+			"method", "mode",
+			"cache", "credentials",
+		];
 
-		if (params.hasOwnProperty("mode"))
-		{
-			fetchSettings.mode = params.mode;
-		}
+		commonSettingsNames.forEach(sett => {
 
-		if (params.hasOwnProperty("cache"))
-		{
-			fetchSettings.cache = params.cache;
-		}
-
-		if (params.hasOwnProperty("credentials"))
-		{
-			fetchSettings.credentials = params.credentials;
-		}
+			if (params.hasOwnProperty(sett))
+			{
+				fetchSettings[sett] = params[sett];
+			}
+		});
 
 		let result = fetch(params.url, fetchSettings);
 
